@@ -1,26 +1,27 @@
 /* Import the google web fonts you want to use */
 
-
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Patua+One');
 
 /* Card Based Layout - Base styles */
 
 body {
-	background: hsl(0, 0%, 90%);
+    background: hsl(0, 0%, 90%);
 }
+
 
 /*--------------------------------------------------------------
 Typography
 --------------------------------------------------------------*/
+
 body,
 button,
 input,
 select,
 textarea {
-	color: #404040;
-	font-family: 'Comfortaa', Arial, sans-serif;
-	font-size: 18px;
-	line-height: 1.5;
+    color: #404040;
+    font-family: 'Comfortaa', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 h1,
@@ -29,196 +30,232 @@ h3,
 h4,
 h5,
 h6 {
-	clear: both;
-  font-family: 'Patua One', serif;
-  letter-spacing: 2px;
+    clear: both;
+    font-family: 'Patua One', serif;
+    letter-spacing: 2px;
 }
 
 h2 {
-  font-size: 1rem;
-  color: #007489;
+    font-size: 1rem;
+    color: #007489;
 }
 
 p {
-	margin-bottom: 1.5em;
-  color: #898989;
+    margin-bottom: 1.5em;
+    color: #898989;
 }
 
 b,
 strong {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 dfn,
 cite,
 em,
 i {
-	font-style: italic;
+    font-style: italic;
 }
 
 blockquote {
-	margin: 0 1.5em;
+    margin: 0 1.5em;
 }
 
 address {
-	margin: 0 0 1.5em;
+    margin: 0 0 1.5em;
 }
 
 pre {
-	background: #eee;
-	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	font-size: 1.5rem;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
+    background: #eee;
+    font-family: "Courier 10 Pitch", Courier, monospace;
+    font-size: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.6em;
 }
 
 code,
 kbd,
 tt,
 var {
-	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+    font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 
 abbr,
 acronym {
-	border-bottom: 1px dotted #666;
-	cursor: help;
+    border-bottom: 1px dotted #666;
+    cursor: help;
 }
 
 mark,
 ins {
-	background: #fff9c0;
-	text-decoration: none;
+    background: #fff9c0;
+    text-decoration: none;
 }
 
 sup,
 sub {
-	font-size: 75%;
-	height: 0;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
+    font-size: 75%;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
 }
 
 sup {
-	bottom: 1ex;
+    bottom: 1ex;
 }
 
 sub {
-	top: .5ex;
+    top: .5ex;
 }
 
 small {
-	font-size: 75%;
+    font-size: 75%;
 }
 
 big {
-	font-size: 125%;
+    font-size: 125%;
+}
+
+.add-image {
+    width: 50px;
+    height: auto;
 }
 
 .masthead {
-	background-color:#cc0000;/* #005b75; */
+    background-color: #cc0000;
+    margin-bottom: 5px;
+    /* #005b75; */
 }
 
 .masthead .site-branding {
-	padding-left: 10px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.masthead p, .masthead p a {
-  color: white;
+.masthead p,
+.masthead p a {
+    color: white;
 }
 
 .site-title {
-	color: white;
+    color: white;
+    clear: both;
+    font-family: 'Patua One', serif;
+    font-size: 45px;
+    letter-spacing: 2px;
 }
 
 img {
-	display: block;
-	border: 0;
-	width: 100%;
-	height: auto;
+    display: block;
+    border: 0;
+    width: 100%;
+    height: auto;
 }
 
-
 .card {
-	background: white;
-	margin-bottom: 2em;	
+    background: white;
+    margin-bottom: 2em;
 }
 
 .card a {
-	color: black;
-	text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 .card a:hover {
-	box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
+    box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
 }
 
 .card-content {
-	padding: 0.4em;
+    padding: 0.4em;
 }
 
 .card-content h2 {
-	margin-top: 0;
-	margin-bottom: .5em;
-	font-weight: bold;
-	display: flex;
-	justify-content: space-between;
+    margin-top: 0;
+    margin-bottom: .5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
 }
 
 .card-content p {
-	font-size: 80%;
+    font-size: 80%;
 }
 
+.card-title-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+
 /* Category bar styles*/
+
 .category-bar {
     flex: 1;
     display: flex;
     overflow: auto;
-	margin-bottom: 5px;	
+    margin-bottom: 5px;
 }
 
+
 /* Hide scrollbar for Chrome, Safari and Opera */
+
 .category-bar::-webkit-scrollbar {
     display: none;
 }
 
+
 /* Hide scrollbar for IE, Edge and Firefox */
+
 .category-bar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .category-list {
     display: flex;
-	column-gap: 5px;
-    min-height: min-content; /* needs vendor prefixes */
+    column-gap: 5px;
+    min-height: min-content;
+    /* needs vendor prefixes */
 }
 
-.category-item{
-	background-color: #cc0000;
-	color: white;
-  	/* width: 100%; */
-	min-width: 75px;
-  	padding: 0 5px 0 5px;
-  	text-align: center;
-  	line-height: 35px;
-  	font-size: 12px;
-	white-space: nowrap;
+.category-item {
+    background-color: #cc0000;
+    color: white;
+    /* width: 100%; */
+    min-width: 75px;
+    padding: 0 5px 0 5px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 12px;
+    white-space: nowrap;
 }
+
 .category-item:hover {
-	background: #003392;
-	border-color: #003392;
- }
-.category-item a{
-	display: block;
-	color: white;
-	text-decoration: none;
+    background: #003392;
+    border-color: #003392;
 }
+
+.category-item a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.edit-menu-item {
+    margin: auto 0 auto auto;
+    height: 100%;
+    margin-right: 12px;
+}
+
 
 /* Flexbox stuff */
 
@@ -227,9 +264,8 @@ img {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-		/* gap: 1em; */
+        /* gap: 1em; */
     }
-
     .card {
         flex: 0 1 calc(50% - 1em);
     }
@@ -240,4 +276,3 @@ img {
         flex: 0 1 calc(25% - 1em);
     }
 }
-

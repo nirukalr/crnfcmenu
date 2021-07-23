@@ -1,134 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <title>CR&FC Menu</title>
 </head>
+
 <body>
     <div id="app-4">
         <header class="masthead clear">
-            <div class="centered">            
+            <div class="centered">
                 <div class="site-branding">
-                    <h1 class="site-title">CR&FC Menu</h1>           
+                    <span class="site-title">CR&FC Menu</span>
+                    <a href="#" class="edit-menu-item" title="Edit menu item" v-if="isAdmin">
+                        <img class="add-image" src="images/plus-sign-icon.png" st alt="">
+                    </a>
                 </div>
             </div>
         </header>
-       
-        <div class="category-bar">        
+
+        <div class="category-bar">
             <div class="category-list">
-                <div class="category-item">
-                    <a href="#">All</a> 
-                 </div>
-                <div class="category-item">
-                   <a href="#">Appertizers</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Burgers</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Family style</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Luch Special</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Chiken</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Beef</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Pork</a> 
-                </div>
-                <div class="category-item">
-                    <a href="#">Pizza</a> 
-                </div>            
-                <div class="category-item">
-                    <a href="#">Passta</a> 
-                </div>            
-                <div class="category-item">
-                    <a href="#">Desserts</a> 
+                <div class="category-item" v-for="categoryItem in categories">
+                    <a href="#" @click.prevent="selectedCategoryId = categoryItem.id">{{categoryItem.name}}</a>
                 </div>
             </div>
-        </div> 
-        <main class="main-area">        
+        </div>
+        <main class="main-area">
             <div class="centered">
-                <section class="cards">                
-                    <article class="card" v-for="menuItem in menuItems">
-                        <a href="#">
-                            <picture class="thumbnail">
-                                <img :src="menuItem.url">
-                            </picture>
-                            <div class="card-content">
+                <section class="cards">
+                    <article class="card" v-for="menuItem in filterMenuItemsByCategory">
+                        <picture class="thumbnail">
+                            <img :src="menuItem.url">
+                        </picture>
+                        <div class="card-content">
+                            <div class="card-title-row">
                                 <h2>{{menuItem.name}}</h2>
-                                <h2>Rs {{menuItem.price}}</h2>
-                                <p>{{menuItem.desc}}</p>
-                            </div><!-- .card-content -->
-                        </a>
-                    </article><!-- .card -->    
-                </section><!-- .cards -->           
-            </div><!-- .centered -->        
+                                <a href="#" class="edit-menu-item" title="Edit menu item" v-if="isAdmin">
+                                    <i class="fa fa-edit" style="font-size:24px;color: gray;"></i>
+                                </a>
+                            </div>
+                            <h2>Rs {{menuItem.price}}</h2>
+                            <p>{{menuItem.desc}}</p>
+                        </div>
+                    </article>
+                </section>
+            </div>
         </main>
     </div>
     <script>
         var app4 = new Vue({
             el: '#app-4',
             data: {
-            "menuItems":[
-                {
-                    "url":"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-                    "name":"Seafood Sauté or Alfredo",
-                    "price":"1250.00",
-                    "desc":"Fresh haddock, sea scallops, gulf shrimp, and chef’s choice of ravioli tossed in your choice of sauce. With garlic and white wine; homemade alfredo"
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-                    "name":"A.D.’s Chicken Saltimbocca",
-                    "price":"1260.00",
-                    "desc":"Boneless chicken breast sautéed with fresh sage and prosciutto. Finished in the oven with mozzarella and served atop creamy asiago linguini."
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-                    "name":"Emeril’s Chicken",
-                    "price":"2250.00",
-                    "desc":"Boneless chicken breast sautéed with mushrooms, spinach, artichoke hearts, fire-roasted red peppers, and sun-dried tomatoes. Finished with a chipotle-chevre sauce."
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80",
-                    "name":"Traditional Chicken Scampi",
-                    "price":"3250.00",
-                    "desc":"Boneless chicken breast sautéed with mushrooms and fresh garlic. Finished with white wine, sweet cream butter, and linguini."
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80",
-                    "name":"Beer-Battered Seafood Platter",
-                    "price":"6750.00",
-                    "desc":"Fresh haddock, gulf shrimp, and sea scallops dipped in beer batter and fried to a golden brown. Served over a mountain of fries."
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-                    "name":"Baked Stuffed Seafood Selection",
-                    "price":"4250.00",
-                    "desc":"Your choice served on our homemade crab meat stuffing. With haddock, $15.95; jumbo sea scallops, $18.95; gulf shrimp."
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
-                    "name":"Baked Stuffed Seafood Selection",
-                    "price":"1320.00",
-                    "desc":"Your choice served on our homemade crab meat stuffing. With haddock, $15.95; jumbo sea scallops, $18.95; gulf shrimp."
-                },
-                {
-                    "url":"https://images.unsplash.com/photo-1497888329096-51c27beff665?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80",
-                    "name":"Baked Stuffed Seafood Selection",
-                    "price":"4550.00",
-                    "desc":"Your choice served on our homemade crab meat stuffing. With haddock, $15.95; jumbo sea scallops, $18.95; gulf shrimp."
+                "selectedCategoryId": 0,
+                "isAdmin": false,
+                "categories": [{
+                    id: 0,
+                    name: "All"
+                }, {
+                    id: 1,
+                    name: "Appertizers"
+                }, {
+                    id: 2,
+                    name: "Burgers"
+                }, {
+                    id: 3,
+                    name: "Luch Special"
+                }, {
+                    id: 4,
+                    name: "Family style"
+                }, {
+                    id: 5,
+                    name: "Chiken"
+                }, {
+                    id: 6,
+                    name: "Pork"
+                }, {
+                    id: 7,
+                    name: "Beef"
+                }, {
+                    id: 8,
+                    name: "Pizza"
+                }, {
+                    id: 9,
+                    name: "Passta"
+                }, {
+                    id: 10,
+                    name: "Desserts"
+                }, {
+                    id: 11,
+                    name: "Breverages"
+                }, {
+                    id: 12,
+                    name: "Guices"
+                }],
+
+                "menuItems": [{
+                    "url": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                    "name": "Seafood Sauté or Alfredo",
+                    "price": "1250.00",
+                    "desc": "Fresh haddock, sea scallops, gulf shrimp, and chef’s choice of ravioli tossed in your choice of sauce. With garlic and white wine; homemade alfredo",
+                    "categoryId": 1
+                }, {
+                    "url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                    "name": "A.D.’s Chicken Saltimbocca",
+                    "price": "1260.00",
+                    "desc": "Boneless chicken breast sautéed with fresh sage and prosciutto. Finished in the oven with mozzarella and served atop creamy asiago linguini.",
+                    "categoryId": 1
+                }, {
+                    "url": "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                    "name": "Emeril’s Chicken",
+                    "price": "2250.00",
+                    "desc": "Boneless chicken breast sautéed with mushrooms, spinach, artichoke hearts, fire-roasted red peppers, and sun-dried tomatoes. Finished with a chipotle-chevre sauce.",
+                    "categoryId": 1
+                }, {
+                    "url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80",
+                    "name": "Traditional Chicken Scampi",
+                    "price": "3250.00",
+                    "desc": "Boneless chicken breast sautéed with mushrooms and fresh garlic. Finished with white wine, sweet cream butter, and linguini.",
+                    "categoryId": 1
+                }, {
+                    "url": "https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80",
+                    "name": "Beer-Battered Seafood Platter",
+                    "price": "6750.00",
+                    "desc": "Fresh haddock, gulf shrimp, and sea scallops dipped in beer batter and fried to a golden brown. Served over a mountain of fries.",
+                    "categoryId": 2
+                }, {
+                    "url": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                    "name": "Baked Stuffed Seafood Selection",
+                    "price": "4250.00",
+                    "desc": "Your choice served on our homemade crab meat stuffing. With haddock, $15.95; jumbo sea scallops, $18.95; gulf shrimp.",
+                    "categoryId": 3
+                }, {
+                    "url": "https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+                    "name": "Baked Stuffed Seafood Selection",
+                    "price": "1320.00",
+                    "desc": "Your choice served on our homemade crab meat stuffing. With haddock, $15.95; jumbo sea scallops, $18.95; gulf shrimp.",
+                    "categoryId": 4
+                }, {
+                    "url": "https://images.unsplash.com/photo-1497888329096-51c27beff665?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80",
+                    "name": "Baked Stuffed Seafood Selection",
+                    "price": "4550.00",
+                    "desc": "Your choice served on our homemade crab meat stuffing. With haddock, $15.95; jumbo sea scallops, $18.95; gulf shrimp.",
+                    "categoryId": 5
                 }]
+            },
+            computed: {
+                filterMenuItemsByCategory() {
+                    if (this.selectedCategoryId === 0)
+                        return this.menuItems;
+
+                    return this.menuItems.filter(menuItem => {
+                        return menuItem.categoryId === this.selectedCategoryId;
+                    });
+                }
             }
         });
     </script>
 </body>
+
 </html>
