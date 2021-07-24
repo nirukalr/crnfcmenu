@@ -26,8 +26,8 @@
 
         <div class="category-bar">
             <div class="category-list">
-                <div class="category-item" v-for="categoryItem in categories">
-                    <a href="#" @click.prevent="selectedCategoryId = categoryItem.id">{{categoryItem.name}}</a>
+                <div class="category-item" v-for="categoryItem in categories" :class=' { "selected": selectedCategoryId == categoryItem.id } '>
+                    <a href="#" @click.prevent="changeSelectedCategory(categoryItem.id)">{{categoryItem.name}}</a>
                 </div>
             </div>
         </div>
@@ -158,6 +158,11 @@
                     return this.menuItems.filter(menuItem => {
                         return menuItem.categoryId === this.selectedCategoryId;
                     });
+                }
+            },
+            methods: {
+                changeSelectedCategory(categoryId) {
+                    this.selectedCategoryId = categoryId;
                 }
             }
         });

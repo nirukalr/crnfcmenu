@@ -244,6 +244,11 @@ img {
     border-color: #003392;
 }
 
+.selected {
+    background: #003392;
+    border-color: #003392;
+}
+
 .category-item a {
     display: block;
     color: white;
