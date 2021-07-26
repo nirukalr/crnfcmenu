@@ -25,10 +25,19 @@
         </header>
 
         <div class="category-bar">
-            <div class="category-list">
+            <div class="category-item category-item-default" :class=' { "selected": selectedCategoryId == 0 } '>
+                <a href="#" @click.prevent="changeSelectedCategory(0)">All</a>
+            </div>
+            <div class="arrow arrow-left">
+                <a href="#" @click.prevent="scrollCategoryListToLeft"><i class="fa fa-angle-left"></i></a>
+            </div>
+            <div id="category-list-container" class="category-list">
                 <div class="category-item" v-for="categoryItem in categories" :class=' { "selected": selectedCategoryId == categoryItem.id } '>
                     <a href="#" @click.prevent="changeSelectedCategory(categoryItem.id)">{{categoryItem.name}}</a>
                 </div>
+            </div>
+            <div class="arrow arrow-right">
+                <a href="#" @click.prevent="scrollCategoryListToRight"><i class="fa fa-angle-right"></i></a>
             </div>
         </div>
         <main class="main-area">
@@ -60,9 +69,6 @@
                 "selectedCategoryId": 0,
                 "isAdmin": false,
                 "categories": [{
-                    id: 0,
-                    name: "All"
-                }, {
                     id: 1,
                     name: "Appertizers"
                 }, {
@@ -163,6 +169,20 @@
             methods: {
                 changeSelectedCategory(categoryId) {
                     this.selectedCategoryId = categoryId;
+                },
+                scrollCategoryListToLeft() {
+                    const container = document.querySelector('#category-list-container');
+                    container.scrollTo({
+                        left: container.scrollLeft - container.offsetWidth,
+                        behavior: 'smooth'
+                    });
+                },
+                scrollCategoryListToRight() {
+                    const container = document.querySelector('#category-list-container');
+                    container.scrollTo({
+                        left: container.scrollLeft + container.offsetWidth,
+                        behavior: 'smooth'
+                    });
                 }
             }
         });

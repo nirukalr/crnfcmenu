@@ -199,32 +199,44 @@ img {
 .category-bar {
     flex: 1;
     display: flex;
-    overflow: auto;
+    /* overflow: auto; */
     margin-bottom: 5px;
 }
 
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 
-.category-bar::-webkit-scrollbar {
-    display: none;
-}
+
+/* .category-bar::-webkit-scrollbar {
+    display: none; 
+}*/
 
 
 /* Hide scrollbar for IE, Edge and Firefox */
 
-.category-bar {
+
+/* .category-bar {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
-}
+} */
 
 .category-list {
     display: flex;
     column-gap: 5px;
     min-height: min-content;
+    overflow: auto;
     /* needs vendor prefixes */
+}
+
+.category-list::-webkit-scrollbar {
+    display: none;
+}
+
+.category-list {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .category-item {
@@ -237,6 +249,12 @@ img {
     line-height: 35px;
     font-size: 12px;
     white-space: nowrap;
+}
+
+.category-item-default {
+    margin-right: 5px !important;
+    min-width: 25px !important;
+    width: 25px !important;
 }
 
 .category-item:hover {
@@ -259,6 +277,33 @@ img {
     margin: auto 0 auto auto;
     height: 100%;
     margin-right: 12px;
+}
+
+.arrow {
+    background-color: #cc0000;
+    color: white;
+    /* width: 100%; */
+    padding: 0 5px 0 5px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 12px;
+    white-space: nowrap;
+    width: auto;
+    min-width: auto;
+}
+
+.arrow-left {
+    margin-right: 5px;
+}
+
+.arrow-right {
+    margin-left: 5px;
+}
+
+.arrow a {
+    display: block;
+    color: white;
+    text-decoration: none;
 }
 
 
